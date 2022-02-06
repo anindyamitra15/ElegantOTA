@@ -16,6 +16,10 @@ void ElegantOtaClass::setID(const char* id){
   #endif
 }
 
+void ElegantOtaClass::onOTAStart(void callable(void)) {
+  preUpdateCallback = callable;
+}
+
 #if defined(ESP8266)
   void ElegantOtaClass::begin(ESP8266WebServer *server, const char * username, const char * password){
 #elif defined(ESP32)

@@ -25,6 +25,7 @@ class ElegantOtaClass{
     ElegantOtaClass();
     
     void setID(const char* id);
+    void onOTAStart(void callable(void));
 
     #if defined(ESP8266)      
       void begin(ESP8266WebServer *server, const char * username = "", const char * password = "");
@@ -44,7 +45,8 @@ class ElegantOtaClass{
     char _username[64];
     char _password[64];
     char _id[128];
-    bool authenticate;      
+    bool authenticate;
+    void (*preUpdateCallback)();    
 };
 
 extern ElegantOtaClass ElegantOTA;
