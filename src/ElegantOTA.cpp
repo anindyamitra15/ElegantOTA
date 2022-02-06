@@ -37,6 +37,7 @@ void ElegantOtaClass::onOTAStart(void callable(void)) {
       if (authenticate && !_server->authenticate(_username, _password)) {
         return _server->requestAuthentication();
       }
+      preUpdateCallback();
       _server->sendHeader("Content-Encoding", "gzip");
       _server->send_P(200, "text/html", (const char*)ELEGANT_HTML, ELEGANT_HTML_SIZE);
     });
